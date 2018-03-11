@@ -10,16 +10,20 @@ package tree;
  * @author klimek
  */
 public class DirectionValidator {
+    public static final String UP = "UP";
+    public static final String LEFT = "LEFT";
+    public static final String RIGHT = "RIGHT";
+    public static final String EXIT = "X";
 
 
     public static boolean validateDirection(String toValidate) {
         try {
             switch (toValidate) {
-                case "UP":
+                case UP:
 
-                case "LEFT":
+                case LEFT:
 
-                case "RIGHT":
+                case RIGHT:
                     return true;
                 default:
                     System.out.println(CommonMessages.WRONGINPUT);

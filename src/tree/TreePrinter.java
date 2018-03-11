@@ -16,48 +16,46 @@ public class TreePrinter {
     Scanner scanner;
 
     public TreePrinter() {
-        //scanner = new Scanner
     }
 
     public static void main(String[] args) {
+        System.out.println(CommonMessages.STARTMESSAGE);
         Scanner sc = new Scanner(System.in);
         String direction = "";
-        //String direction = "LEFT";
-
-        //char character = '*';
         do {
-            System.out.println("UP/LEFT/RIGHT or 'X' to exit");
+            System.out.println(CommonMessages.DIRECTION);
 
             direction = sc.next();
             if (!direction.equals("X")) {
                 boolean directionValidated = DirectionValidator.validateDirection(direction);
-                System.out.println("Heigth");
+                System.out.println(CommonMessages.HEIGHT);
                 int heigth = sc.nextInt();
                 boolean heightValidated = HeightValidator.validateHeight(heigth);
-                System.out.println("character");
+                System.out.println(CommonMessages.CHARACTER);
                 String chara = sc.next();
                 boolean characterValidated = CharacterValidator.validateCharacter(chara);
                 System.out.println();
                 if (directionValidated && heightValidated && characterValidated) {
                     char character = chara.charAt(0);
                     switch (direction) {
-                        case "LEFT":
+                        case DirectionValidator.LEFT:
                             new LeftOrientedTree(heigth, character);
                             break;
-                        case "UP":
+                        case DirectionValidator.UP:
                             new StraightTree(heigth, character);
                             break;
-                        case "RIGHT":
+                        case DirectionValidator.RIGHT:
                             new RightOrientedTree(heigth, character);
                             break;
                         default:
-                            System.out.println("Wrong choice");
+                            System.out.println(CommonMessages.WRONGCHOICE);
 
                     }
 
                 }
             }
-        } while (!direction.equals("X"));
+        } while (!direction.equals(DirectionValidator.EXIT));
+        System.out.println(CommonMessages.BYE);
     }
 
 }
