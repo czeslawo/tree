@@ -21,36 +21,43 @@ public class TreePrinter {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String i = "";
+        String direction = "";
         //String direction = "LEFT";
 
         //char character = '*';
-        while (!i.equals("X")) {
+        do {
             System.out.println("UP/LEFT/RIGHT or 'X' to exit");
-            //if (!i.equals("X")) {
-                i = sc.next();
+
+            direction = sc.next();
+            if (!direction.equals("X")) {
+                boolean directionValidated = DirectionValidator.validateDirection(direction);
                 System.out.println("Heigth");
                 int heigth = sc.nextInt();
+                boolean heightValidated = HeightValidator.validateHeight(heigth);
                 System.out.println("character");
                 String chara = sc.next();
+                boolean characterValidated = CharacterValidator.validateCharacter(chara);
                 System.out.println();
-                char character = chara.charAt(0);
-                switch (i) {
-                    case "LEFT":
-                        new LeftOrientedTree(heigth, character);
-                        break;
-                    case "UP":
-                        new StraightTree(heigth, character);
-                        break;
-                    case "RIGHT":
-                        new RightOrientedTree(heigth, character);
-                        break;
-                    case "X":
-                        System.exit(0);
-                    default:
-                        System.out.println("Wrong choice");
-               // }
+                if (directionValidated && heightValidated && characterValidated) {
+                    char character = chara.charAt(0);
+                    switch (direction) {
+                        case "LEFT":
+                            new LeftOrientedTree(heigth, character);
+                            break;
+                        case "UP":
+                            new StraightTree(heigth, character);
+                            break;
+                        case "RIGHT":
+                            new RightOrientedTree(heigth, character);
+                            break;
+                        default:
+                            System.out.println("Wrong choice");
+
+                    }
+
+                }
             }
-        }
+        } while (!direction.equals("X"));
     }
+
 }
